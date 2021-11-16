@@ -42,8 +42,7 @@
           require_once "database.php";
           $email = $_POST["email"];
           $contraseña = $_POST["contraseña"];
-          $sql = "SELECT cliente.nombre, cliente.idCliente FROM usuario JOIN cliente on usuario.idCliente = cliente.idCliente
-          WHERE usuario.email = ? and usuario.contraseña = ?";
+          $sql = "SELECT Cliente.nombre, Cliente.idCliente FROM Usuario JOIN Cliente on Usuario.idCliente = Cliente.idCliente WHERE Usuario.email = ? and Usuario.password = ?";
           $select = $conn -> prepare($sql);
           $select -> bind_param("ss", $email, $contraseña);
           $select -> execute();

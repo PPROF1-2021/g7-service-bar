@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "root";
-$password = "weblogic1";
-$dbname = "bar";
+$username = "bwrwtduzcg";
+$password = "xh5FVdMBWX";
+$dbname = "bwrwtduzcg";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -11,3 +11,4 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
+

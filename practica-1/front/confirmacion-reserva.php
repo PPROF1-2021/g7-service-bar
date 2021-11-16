@@ -60,14 +60,13 @@
               $fechaHora = $fecha . " " . $hora . ":00";
               $sql = "INSERT INTO Reservas (fecha, cantidadPersonas, idCliente) VALUES (?, ?, ?)";
               $ins_reserva = $conn -> prepare($sql);
-              echo 'reserva tipo ' .  gettype($ins_reserva);
               $ins_reserva->bind_param("sii", $fechaHora, $cantidadPersonas, $idCliente);
               $ins_reserva->execute();
               $ins_reserva->close();
 
-              echo "Fecha: " . $_POST["fecha"] . "<br>";
-              echo "Hora: " . $_POST["hora"] . "<br>";
-              echo "Cantidad de personas: " . $_POST["cantidadPersonas"] . "<br>";
+              echo "<strong>Fecha:</strong> " . $_POST["fecha"] . "<br>";
+              echo "<strong>Hora:</strong> " . $_POST["hora"] . "<br>";
+              echo "<strong>Cantidad de personas:</strong> " . $_POST["cantidadPersonas"] . "<br>";
 
             }
             else {

@@ -37,44 +37,70 @@
     </ul>
   </nav>
 
-  <h1 class="title">Reservas</h1>
-  <a href="lista-reservas.php">Ver mis reservas</a> 
+  <h1 class="title">Editar reserva</h1>
   <div class="usuario-form">
+    <?php
+      require_once('database.php');
+      session_start();
+      $mostrarForm = false;
+      if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+        header("HTTP/1.1 302 Moved Temporarily");
+        header("Location: reserva.html");
+        exit;
+      }
 
-    <form action="./confirmacion-reserva.php" class="needs-validation-reserva" method="post" novalidate>
+      if(isset($_SESSION["bar_loggedin"]) && $_SESSION["bar_loggedin"]) {
+        $idCliente = $_SESSION["bar_idCliente"];
+        $idReserva = $_GET["idReserva"];
+        $sql = 'SELECT idReservas, fecha, cantidadPersonas FROM Reservas WHERE idReservas= ? AND idCliente = ?';
+        $select = $conn -> prepare($sql);
+        $select -> bind_param("ii", $idReserva, $idCliente);
+        $select -> execute();
+
+        $result = $select -> get_result();
+        if($result -> num_rows > 0) {
+          $row = $result -> fetch_assoc();
+          $mostrarForm = true;
+        }
+        else {
+          echo "<p class='alert alert-danger'>No se encontró la reserva solicitada.</p>";
+          echo "<a href='lista-reservas.php'>Ir a mis reservas</a>";
+          exit;  
+        }
+      }
+      else {
+        echo "<p class='alert alert-danger'>Debes estar logueado para editar una reserva.</p>";
+      }
+
+    ?>
+
+    <?php if($mostrarForm): ?>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+          <form action="confirmar-editar-reserva.php" class="needs-validation-editar-reserva" method="post" novalidate>
       <div class="row">
         <div class="col">
-          <label for="txt-fecha" class="form-label">Fecha</label>
-          <input class="user form-control" id="txt-fecha" type="date" name="fecha" required>
-          <div class="invalid-feedback">
-            Ingrese una fecha igual o mayor que la actual
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <label for="txt-hora" class="form-label">Hora</label>
-          <input class="user form-control" id="txt-hora" type="time" name="hora" required>
-          <div class="invalid-feedback">
-            Ingrese una hora mayor que la actual
-          </div>
+          <label for="txt-datetime" class="form-label">Fecha y hora</label>
+          <input class="user form-control" id="txt-datetime" type="text" name="fechaHora" readonly value="<?php echo $row['fecha'];?>"> 
         </div>
       </div>
       <div class="row">
         <div class="col">
           <label for="txt-personas" class="form-label">Cantidad de personas</label>
-          <input class="user form-control" id="txt-personas" type="number" name="cantidadPersonas" required>
+          <input class="user form-control" id="txt-personas" type="number" name="cantidadPersonas" required value="<?php echo $row['cantidadPersonas'];?>">
           <div class="invalid-feedback">
             Ingrese una cantidad de personas entre 1 y 100
           </div>
         </div>
       </div>
-
-
-
+      <input type="hidden" name="idReserva" value="<?php echo $row['idReservas'];?>">
       <button class="btn btn-bar">Enviar</button>
     </form>
-
+          </div>
+        </div>
+      </div>
+    <?php endif; ?>
 
   </div>
   <footer class="footer-style">

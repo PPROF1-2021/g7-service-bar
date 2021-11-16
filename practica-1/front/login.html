@@ -38,35 +38,39 @@
     </ul>
   </nav>
 
-  <div class="usuario-form">
-    <form action="confirmacion-login.php" method="post" class="needs-validation-login" novalidate>
-      <div class="row">
-        <div class="col">
-          <label for="txt-email" class="form-label">Email</label>
-          <input class="user form-control" name="email" type="text" id="txt-email" required>
-          <div class="invalid-feedback">
-            Ingrese un email válido
+  <div class="container">
+    <div class="row">
+      <div class="usuario-form col">
+        <form action="confirmacion-login.php" method="post" class="needs-validation-login" novalidate>
+          <div class="row">
+            <div class="col">
+              <label for="txt-email" class="form-label">Email</label>
+              <input class="user form-control" name="email" type="text" id="txt-email" required>
+              <div class="invalid-feedback">
+                Ingrese un email válido
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <label for="txt-contraseña" class="form-label">Contraseña</label>
-          <input class="user form-control" type="password" name="contraseña" id="txt-contraseña" required>
-          <div class="invalid-feedback">
-            Ingrese contraseña mayor a ocho caracteres
+          <div class="row">
+            <div class="col">
+              <label for="txt-contraseña" class="form-label">Contraseña</label>
+              <input class="user form-control" type="password" name="contraseña" id="txt-contraseña" required>
+              <div class="invalid-feedback">
+                Ingrese contraseña mayor a ocho caracteres
+              </div>
+            </div>
           </div>
-        </div>
+    
+          <div class="button-container">
+            <button class="btn btn-bar">Ingresar</button>
+          </div>
+    
+          <p class="check-in">Si no está registrado haga clic en el botón <a href="registrar.html"
+              class="link-registro">registrarse</a> <i class="fas fa-arrow-left flecha"></i> </p>
+    
+        </form>
       </div>
-
-      <div class="button-container">
-        <button class="btn">Ingresar</button>
-      </div>
-
-      <p class="check-in">Si no está registrado haga clic en el botón <a href="registrar.html"
-          class="link-registro">registrarse</a> <i class="fas fa-arrow-left flecha"></i> </p>
-
-    </form>
+    </div>
   </div>
   <footer class="footer-style">
     Copyright © Todos los derechos reservados

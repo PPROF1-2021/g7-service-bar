@@ -44,7 +44,7 @@
             <div class="col">
                 <?php
                   require_once "database.php";
-                  $ins_cliente = $conn->prepare("INSERT INTO cliente (nombre, apellido, telefono, dni) VALUES (?, ?, ?, ?)");
+                  $ins_cliente = $conn->prepare("INSERT INTO Cliente (nombre, apellido, telefono, dni) VALUES (?, ?, ?, ?)");
                   $ins_cliente->bind_param("ssss", $nombre, $apellido, $telefono, $dni);
                   $nombre = $_POST["nombre"];
                   $apellido = $_POST["apellido"];
@@ -54,7 +54,7 @@
                   $ins_cliente->execute();
                   $ins_cliente->close();
 
-                  $ins_usuario = $conn->prepare("INSERT INTO usuario (email, contraseña, idCliente) VALUES (?, ? , ?)");
+                  $ins_usuario = $conn->prepare("INSERT INTO Usuario (email, password, idCliente) VALUES (?, ? , ?)");
                   $ins_usuario->bind_param("ssi", $email, $contraseña, $id_cliente);
                   $email = $_POST["email"];
                   $contraseña = $_POST["contraseña"];

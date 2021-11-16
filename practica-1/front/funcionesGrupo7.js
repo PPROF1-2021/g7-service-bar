@@ -25,9 +25,6 @@
     Array.prototype.slice.call(formsLogin)
         .forEach(function (form) {
             form.addEventListener("submit", function (event) {
-
-
-
                 validarContraseña()
                 if (!form.checkValidity()) {
                     event.preventDefault()
@@ -43,9 +40,6 @@
     Array.prototype.slice.call(formsReserva)
         .forEach(function (form) {
             form.addEventListener("submit", function (event) {
-
-
-
                 validarFecha()
                 validarHora()
                 validarCantidadDePersonas()
@@ -58,6 +52,21 @@
 
             })
         })
+
+    const formEditarReserva = document.querySelectorAll(".needs-validation-editar-reserva");
+    Array.prototype.slice.call(formEditarReserva)
+    .forEach(function (form) {
+        form.addEventListener("submit", function (event) {
+            validarCantidadDePersonas()
+
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add('was-validated')
+
+        })
+    })
 
     function validarNombre() {
         const txtNombre = document.getElementById("txt-nombre")
