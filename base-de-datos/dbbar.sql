@@ -37,7 +37,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `bar`.`Usuario` (
   `idUsuario` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(55) NOT NULL,
-  `contraseña` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
   `idCliente` INT NOT NULL,
   PRIMARY KEY (`idUsuario`),
   INDEX `FK_Usuario_Cliente_idx` (`idCliente` ASC) VISIBLE,
